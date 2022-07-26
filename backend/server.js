@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 // Retrieve CONTACTS
 app.get('/contacts', (req, res) => {
-    const contact = req.body;
+    
     function reqListener () {
           console.log(this.responseText);
         }
@@ -29,10 +29,20 @@ app.get('/contacts', (req, res) => {
     });
 
 // Add Contact
-app.push('/contacts'), (req, res)=> {
-
-}
-
+app.post('/contacts'), (req, res)=> {
+  var details = req.body;
+  res.send(details);
+  function reqListener () {
+          console.log(this.responseText);
+        }
+        var oReq = new XMLHttpRequest(); // New request object
+        oReq.onload = function() {
+            alert(this.responseText); // Will alert: 42
+        };
+        oReq.open("get", "addData.php", true);
+        oReq.send();
+    }
+;
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
