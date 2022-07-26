@@ -5,7 +5,7 @@ const port = 3000
 // landing Page
 app.get('/', (req, res) => {
   // load landing
-  res.sendFile(__dirname + '/index.html')
+  res.sendFile(__dirname + '../index.html')
 })
 
 // Retrieve CONTACTS
