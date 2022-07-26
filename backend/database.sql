@@ -1,0 +1,1 @@
+SELECT * FROM `user-contact_schema`.users;
