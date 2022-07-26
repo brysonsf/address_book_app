@@ -2,24 +2,38 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-let contacts = ['jim', 'hewie'];
-
 // landing Page
 app.get('/', (req, res) => {
   // load landing
   res.sendFile(__dirname + '/index.html')
 })
 
-// Find CONTACTS
-app.get('/?contacts=', (req, res) => {
+// Retrieve CONTACTS
+app.get('/contacts', (req, res) => {
     const contact = req.body;
+    function reqListener () {
+          console.log(this.responseText);
+        }
 
-    // Output the book to the console for debugging
-    console.log(contact);
-    // push to db?
-    contacts.push(contact);
-    res.send(contacts);
-});
+        var oReq = new XMLHttpRequest(); // New request object
+        oReq.onload = function() {
+            // This is where you handle what to do with the response.
+            // The actual data is found on this.responseText
+            alert(this.responseText); // Will alert: 42
+        };
+        oReq.open("get", "getData.php", true);
+        //                               ^ Don't block the rest of the execution.
+        //                                 Don't wait until the request finishes to
+        //                                 continue.
+        oReq.send();
+    });
+
+// Add Contact
+app.push('/contacts'), (req, res)=> {
+
+}
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
